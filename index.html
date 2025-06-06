@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production Line Tracker</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Production Line Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
     <h1>Production Line Tracker</h1>
-    <script src="script.js"></script>
+    <nav>
+      <button onclick="switchPage('setup')">Setup</button>
+      <button onclick="switchPage('monitor')">Monitor</button>
+      <button onclick="switchPage('report')">Report</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="setupPage" class="page active">
+      <h2>Setup</h2>
+      <label>Client Name: <input type="text" id="clientName"></label>
+      <label>Technician Name: <input type="text" id="technicianName"></label>
+      <label>Line Speed: <input type="number" id="lineSpeed"></label>
+      <label>Blowing Bottle Now: <input type="number" id="blowingBottle"></label>
+      <label>Machines Name: <input type="text" id="machinesName"></label>
+      <label>Desired Efficiency (%): <input type="number" id="desiredEfficiency"></label>
+    </section>
+
+    <section id="monitorPage" class="page">
+      <h2>Monitoring</h2>
+      <div class="controls">
+        <button onclick="stopLine()">Stop Line</button>
+        <button onclick="resumeLine()" id="resumeBtn" disabled>Resume Line</button>
+      </div>
+      <div id="machineButtons"></div>
+      <div id="causeButtons" class="hidden">
+        <button onclick="setCause('Client')">Client</button>
+        <button onclick="setCause('Sacmi')">Sacmi</button>
+      </div>
+      <div id="logList"></div>
+    </section>
+
+    <section id="reportPage" class="page">
+      <h2>Report</h2>
+      <div id="reportResult">No data yet.</div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
